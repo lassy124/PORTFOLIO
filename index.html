@@ -1,61 +1,356 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Thulasi — Data Analyst Portfolio</title>
-  <meta name="description" content="Aspiring Data Analyst skilled in Python, SQL, and visualization, turning raw data into actionable insights." />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Thulasi • Data Analyst</title>
+  <meta name="description" content="Thulasi — Aspiring Data Analyst skilled in Python, SQL, and data visualization." />
+
+  <!-- Optional: Google Font -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700;800&display=swap" rel="stylesheet">
+
   <style>
-    /* --- same styles as before --- */
+    :root{
+      --bg: #0b0f14;
+      --card: #0f141b;
+      --muted: #9fb0c3;
+      --text: #e9f0f8;
+      --accent: #7cf5ff;
+      --accent-2: #c5a3ff;
+      --ring: 50, 200, 255;
+      --shadow: rgba(0,0,0,.35);
+      --radius: 18px;
+    }
+
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body{
+      margin:0;
+      font-family: Inter, system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+      color:var(--text);
+      background:
+        radial-gradient(1200px 800px at 80% -10%, rgba(124,245,255,.12), transparent 60%),
+        radial-gradient(1000px 700px at 0% 20%, rgba(197,163,255,.12), transparent 60%),
+        var(--bg);
+      line-height:1.55;
+    }
+
+    /* Layout */
+    .container{ max-width:1100px; margin:0 auto; padding:0 20px; }
+    header{
+      position:sticky; top:0; z-index:50; backdrop-filter:saturate(140%) blur(10px);
+      background:rgba(10,14,20,.7); border-bottom:1px solid rgba(255,255,255,.06);
+    }
+    nav{ display:flex; align-items:center; justify-content:space-between; height:64px; }
+    .brand{ display:flex; align-items:center; gap:.75rem; font-weight:800; letter-spacing:.2px; }
+    .dot{ width:10px; height:10px; border-radius:50%;
+      background: conic-gradient(from 0deg, #7cf5ff, #c5a3ff, #7cf5ff);
+      box-shadow:0 0 12px rgba(124,245,255,.8);
+    }
+    .navlinks a{
+      color:var(--muted); text-decoration:none; margin-left:18px; font-weight:500; position:relative;
+    }
+    .navlinks a:after{
+      content:""; position:absolute; left:0; bottom:-6px; width:0; height:2px; border-radius:2px;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      transition:width .25s ease;
+    }
+    .navlinks a:hover{ color:var(--text); }
+    .navlinks a:hover:after{ width:100%; }
+
+    /* Hero */
+    .hero{ padding:72px 0 30px; }
+    .title{
+      font-size: clamp(28px, 5vw, 52px);
+      font-weight:800; line-height:1.02; margin:0 0 10px;
+      background: linear-gradient(90deg, #7cf5ff, #c5a3ff, #7cf5ff);
+      background-size: 200% 200%;
+      -webkit-background-clip: text; background-clip:text; color:transparent;
+      animation: sheen 7s ease-in-out infinite;
+    }
+    @keyframes sheen{
+      0%{ background-position: 0% 50%; }
+      50%{ background-position: 100% 50%; }
+      100%{ background-position: 0% 50%; }
+    }
+    .subtitle{ color:var(--muted); font-size:1.05rem; margin:8px 0 22px; }
+    .badges{ display:flex; flex-wrap:wrap; gap:10px; margin:16px 0 26px; }
+    .badge{
+      padding:6px 10px; border-radius: 999px; font-size:.9rem; color:#061017;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      box-shadow:0 6px 18px rgba(var(--ring), .25);
+    }
+    .cta{ display:flex; gap:12px; flex-wrap:wrap; }
+    .btn{
+      appearance:none; border:0; cursor:pointer; font-weight:700;
+      padding:12px 16px; border-radius:12px; transition: transform .15s ease, box-shadow .2s ease;
+      color:#061017; background:linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow:0 10px 24px rgba(var(--ring), .35);
+      text-decoration:none; display:inline-flex; align-items:center; gap:.5rem;
+    }
+    .btn:hover{ transform: translateY(-1px); box-shadow:0 14px 30px rgba(var(--ring), .45); }
+    .btn.ghost{
+      background:transparent; color:var(--text); border:1px solid rgba(255,255,255,.12);
+      box-shadow:none;
+    }
+    .btn.ghost:hover{ border-color:rgba(255,255,255,.25); }
+
+    .section{ padding:48px 0; }
+    .card{
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-radius: var(--radius);
+      box-shadow: 0 10px 30px var(--shadow);
+      padding:22px;
+    }
+    h2{
+      font-size: clamp(22px, 3.5vw, 32px);
+      margin:0 0 18px; font-weight:800;
+      background: linear-gradient(90deg, #ffffff, #cfefff);
+      -webkit-background-clip: text; background-clip:text; color:transparent;
+    }
+    .grid{
+      display:grid; gap:18px;
+      grid-template-columns: repeat(12, 1fr);
+    }
+    .col-6{ grid-column: span 6; }
+    .col-4{ grid-column: span 4; }
+    .col-12{ grid-column: span 12; }
+    @media (max-width: 900px){
+      .col-6, .col-4 { grid-column: span 12; }
+    }
+
+    /* Chips */
+    .chips{ display:flex; flex-wrap:wrap; gap:10px; }
+    .chip{
+      padding:8px 12px; border-radius:10px; font-size:.95rem; color:var(--text);
+      background:rgba(255,255,255,.06); border:1px solid rgba(255,255,255,.08);
+    }
+
+    /* Project cards */
+    .project{
+      display:flex; flex-direction:column; gap:10px;
+      border:1px solid rgba(255,255,255,.08);
+      background:linear-gradient(180deg, rgba(255,255,255,.05), rgba(255,255,255,.02));
+      border-radius:16px; padding:18px; transition: transform .18s ease, box-shadow .2s ease;
+    }
+    .project:hover{ transform: translateY(-2px); box-shadow:0 14px 36px var(--shadow); }
+    .project h3{ margin:0; font-size:1.2rem; }
+    .project p{ margin:6px 0 2px; color:var(--muted); }
+
+    /* Footer */
+    footer{
+      padding:36px 0 60px; color:var(--muted); text-align:center; font-size:.95rem;
+    }
+
+    /* Reveal on scroll */
+    .reveal{ opacity:0; transform: translateY(18px); transition: all .6s ease; }
+    .reveal.show{ opacity:1; transform:none; }
+
+    /* Tiny accent underline for section captions */
+    .caption{
+      color:var(--muted); font-weight:600; letter-spacing:.12em; text-transform:uppercase; font-size:.78rem;
+      display:inline-block; margin-bottom:10px;
+      background:linear-gradient(90deg, var(--accent), var(--accent-2)); -webkit-background-clip:text; color:transparent;
+    }
+
+    /* Link styles */
+    a.inline{ color:var(--accent); text-decoration:none; }
+    a.inline:hover{ text-decoration:underline; }
   </style>
 </head>
 <body>
-  <!-- Nav -->
-  <nav class="nav">
-    <div class="container nav-inner">
-      <div class="brand">Thulasi • Data Analyst</div>
-      <div class="menu">
-        <a href="#about">About</a>
-        <a href="#skills">Skills</a>
-        <a href="#projects">Projects</a>
-        <a href="#resume">Resume</a>
-        <a href="#contact">Contact</a>
+
+  <!-- NAV -->
+  <header>
+    <div class="container">
+      <nav>
+        <div class="brand"><span class="dot"></span> Thulasi • Data Analyst</div>
+        <div class="navlinks">
+          <a href="#about">About</a>
+          <a href="#skills">Skills</a>
+          <a href="#projects">Projects</a>
+          <a href="#resume">Resume</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </nav>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="hero container">
+    <p class="caption reveal">Open to opportunities • Data Analyst</p>
+    <h1 class="title reveal">Turning raw data into <span style="white-space:nowrap;">actionable insights.</span></h1>
+    <p class="subtitle reveal">
+      I analyze, visualize, and model data using Python, SQL, and lightweight ML. Recently built a
+      <a class="inline" href="#projects">Student Performance prediction app</a> with Streamlit & scikit-learn.
+    </p>
+    <div class="badges reveal">
+      <span class="badge">Python</span>
+      <span class="badge">Pandas</span>
+      <span class="badge">NumPy</span>
+      <span class="badge">SQL</span>
+      <span class="badge">Visualization</span>
+      <span class="badge">Streamlit</span>
+    </div>
+    <div class="cta reveal">
+      <a class="btn" href="#projects">View Projects</a>
+      <a class="btn ghost" href="#contact">Contact</a>
+      <a class="btn ghost" href="resume.pdf" target="_blank" rel="noopener">Download Resume</a>
+      <a class="btn ghost" href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn ghost" href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container grid">
+      <div class="col-12 card reveal">
+        <h2>About Me</h2>
+        <p>
+          I am <strong>Thulasi</strong>, an aspiring Data Analyst with hands-on experience in Python, Pandas, NumPy, and SQL.
+          I specialize in cleaning messy datasets, performing exploratory data analysis, and building predictive models.
+          I enjoy creating dashboards and lightweight apps with Streamlit to make insights interactive and accessible.
+          Currently, I’m strengthening my skills in data visualization, statistical analysis, and machine learning.
+          I’m eager to contribute to data-driven decision-making in real business scenarios.
+        </p>
       </div>
     </div>
-  </nav>
+  </section>
 
-  <main class="container">
-    <!-- Hero -->
-    <section class="hero">
-      <div>
-        <span class="chip">Open to opportunities • Data Analyst</span>
-        <h1>Aspiring Data Analyst skilled in Python, SQL, and visualization, turning raw data into actionable insights.</h1>
-        <p class="muted">I analyze, visualize, and model data using Python, SQL, and lightweight ML. Recently built a Student Performance prediction app with Streamlit and scikit-learn.</p>
-        <div class="btns">
-          <a class="btn primary" href="#projects">View Projects</a>
-          <a class="btn" href="#resume">Download Resume</a>
-          <a class="btn" href="https://github.com/your-username" target="_blank" rel="noreferrer">GitHub</a>
-          <a class="btn" href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noreferrer">LinkedIn</a>
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="container grid">
+      <div class="col-6 card reveal">
+        <h2>Core Skills</h2>
+        <div class="chips">
+          <span class="chip">Python</span>
+          <span class="chip">Pandas</span>
+          <span class="chip">NumPy</span>
+          <span class="chip">Matplotlib</span>
+          <span class="chip">Seaborn</span>
+          <span class="chip">SQL</span>
+          <span class="chip">EDA</span>
+          <span class="chip">Data Cleaning</span>
+          <span class="chip">Feature Engineering</span>
+          <span class="chip">Linear Regression</span>
+          <span class="chip">Classification (basics)</span>
+          <span class="chip">Streamlit</span>
         </div>
       </div>
-      <!-- quick facts card unchanged -->
-    </section>
-
-    <!-- About -->
-    <section id="about">
-      <h2>About Me</h2>
-      <div class="card">
-        <p>I am Thulasi, an aspiring Data Analyst with hands-on experience in Python, Pandas, NumPy, and SQL.  
-        I specialize in cleaning messy datasets, performing exploratory data analysis, and building predictive models.  
-        I enjoy creating dashboards and lightweight apps using Streamlit to make data-driven insights interactive and accessible.  
-        Currently, I am focused on strengthening my skills in data visualization, statistical analysis, and machine learning.  
-        I am eager to contribute to data-driven decision-making in real-world business scenarios.</p>
+      <div class="col-6 card reveal">
+        <h2>Tools</h2>
+        <div class="chips">
+          <span class="chip">Jupyter</span>
+          <span class="chip">VS Code</span>
+          <span class="chip">Git & GitHub</span>
+          <span class="chip">Excel</span>
+          <span class="chip">GitHub Pages</span>
+          <span class="chip">APIs (requests)</span>
+        </div>
       </div>
-    </section>
+    </div>
+  </section>
 
-    <!-- rest of portfolio unchanged -->
-  </main>
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="container">
+      <div class="grid">
+        <div class="col-12"><h2 class="reveal">Projects</h2></div>
+
+        <!-- Project 1 -->
+        <div class="col-6 reveal">
+          <div class="project">
+            <h3>Student Performance Prediction App</h3>
+            <p>
+              Built a Streamlit app using scikit-learn to predict student scores from demographic and study features.
+              Includes clean EDA, heatmaps, and model metrics (R², RMSE, MAE).
+            </p>
+            <div class="chips">
+              <span class="chip">Streamlit</span>
+              <span class="chip">scikit-learn</span>
+              <span class="chip">Pandas</span>
+              <span class="chip">Seaborn</span>
+            </div>
+            <div class="cta" style="margin-top:10px;">
+              <a class="btn" href="https://studentperformanceproject201ipynb-at5kikhqjgfgdwz2snh8nv.streamlit.app/" target="_blank" rel="noopener">Live App</a>
+              <a class="btn ghost" href="https://github.com/YOUR-USERNAME/student-performance-project" target="_blank" rel="noopener">Source</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Project 2 (example) -->
+        <div class="col-6 reveal">
+          <div class="project">
+            <h3>Retail Sales EDA</h3>
+            <p>
+              Cleaned and analyzed multi-store sales data, uncovered seasonal patterns, and built a simple forecast baseline.
+            </p>
+            <div class="chips">
+              <span class="chip">Python</span>
+              <span class="chip">Pandas</span>
+              <span class="chip">Matplotlib</span>
+              <span class="chip">Time Series</span>
+            </div>
+            <div class="cta" style="margin-top:10px;">
+              <a class="btn ghost" href="https://github.com/YOUR-USERNAME/retail-sales-eda" target="_blank" rel="noopener">Source</a>
+            </div>
+          </div>
+        </div>
+
+        <!-- Add more projects similarly -->
+      </div>
+    </div>
+  </section>
+
+  <!-- RESUME -->
+  <section id="resume" class="section">
+    <div class="container grid">
+      <div class="col-12 card reveal">
+        <h2>Resume</h2>
+        <p>Download the latest copy of my resume or view it online.</p>
+        <div class="cta" style="margin-top:8px;">
+          <a class="btn" href="resume.pdf" target="_blank" rel="noopener">Download PDF</a>
+          <a class="btn ghost" href="resume.pdf" target="_blank" rel="noopener">Open in new tab</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container grid">
+      <div class="col-12 card reveal">
+        <h2>Contact</h2>
+        <p>
+          Reach out for opportunities, collaborations, or a friendly chat.
+        </p>
+        <div class="chips" style="margin-top:12px;">
+          <a class="chip" href="mailto:YOUR-EMAIL@example.com">YOUR-EMAIL@example.com</a>
+          <a class="chip" href="https://github.com/YOUR-USERNAME" target="_blank" rel="noopener">GitHub</a>
+          <a class="chip" href="https://www.linkedin.com/in/YOUR-LINKEDIN" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container">
+      © <span id="year"></span> Thulasi • Data Analyst — Built with HTML/CSS on GitHub Pages.
+    </div>
+  </footer>
+
+  <script>
+    // Year
+    document.getElementById('year').textContent = new Date().getFullYear();
+
+    // Reveal on scroll
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){ entry.target.classList.add('show'); }
+      });
+    }, { threshold: 0.12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
 </body>
 </html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Thulasi — Data Analyst Portfolio</title>
+  <meta name="description" content="Aspiring Data Analyst skilled in Python, SQL, and visualization, turning raw data into actionable insights." />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    /* --- same styles as before --- */
+  </style>
+</head>
+<body>
+  <!-- Nav -->
+  <nav class="nav">
+    <div class="container nav-inner">
+      <div class="brand">Thulasi • Data Analyst</div>
+      <div class="menu">
+        <a href="#about">About</a>
+        <a href="#skills">Skills</a>
+        <a href="#projects">Projects</a>
+        <a href="#resume">Resume</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </div>
+  </nav>
+
+  <main class="container">
+    <!-- Hero -->
+    <section class="hero">
+      <div>
+        <span class="chip">Open to opportunities • Data Analyst</span>
+        <h1>Aspiring Data Analyst skilled in Python, SQL, and visualization, turning raw data into actionable insights.</h1>
+        <p class="muted">I analyze, visualize, and model data using Python, SQL, and lightweight ML. Recently built a Student Performance prediction app with Streamlit and scikit-learn.</p>
+        <div class="btns">
+          <a class="btn primary" href="#projects">View Projects</a>
+          <a class="btn" href="#resume">Download Resume</a>
+          <a class="btn" href="https://github.com/your-username" target="_blank" rel="noreferrer">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/your-linkedin" target="_blank" rel="noreferrer">LinkedIn</a>
+        </div>
+      </div>
+      <!-- quick facts card unchanged -->
+    </section>
+
+    <!-- About -->
+    <section id="about">
+      <h2>About Me</h2>
+      <div class="card">
+        <p>I am Thulasi, an aspiring Data Analyst with hands-on experience in Python, Pandas, NumPy, and SQL.  
+        I specialize in cleaning messy datasets, performing exploratory data analysis, and building predictive models.  
+        I enjoy creating dashboards and lightweight apps using Streamlit to make data-driven insights interactive and accessible.  
+        Currently, I am focused on strengthening my skills in data visualization, statistical analysis, and machine learning.  
+        I am eager to contribute to data-driven decision-making in real-world business scenarios.</p>
+      </div>
+    </section>
+
+    <!-- rest of portfolio unchanged -->
+  </main>
+</body>
+</html>
